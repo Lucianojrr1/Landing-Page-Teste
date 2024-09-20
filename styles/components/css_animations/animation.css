@@ -1,0 +1,80 @@
+@import "https://unpkg.com/open-props@1.6.17/easings.min.css";
+
+/* Efeito Sheen */
+@keyframes sheen {
+  100% {
+    transform: rotateZ(60deg) translate(1em, -9em);
+  }
+}
+
+[anim="sheen"]:not(.toggled)::after {
+  animation: sheen var(--ease-elastic-in-1) 1s infinite;
+}
+
+[anim="sheen"]::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  bottom: -50%;
+  left: -50%;
+  background: var(--red-sheen);
+  transform: rotateZ(60deg) translate(-5em, 7.5em);
+}
+
+:root {
+  --black: hsl(0, 0%, 13%);
+  --dark: hsl(12, 32%, 2%);
+  --gray: hsl(0, 0%, 70%);
+  --white: hsl(0, 0%, 96%);
+  --red: hsl(327, 77%, 23%);
+  --red-shadow: hsl(318, 61%, 23%);
+  --red-sheen: linear-gradient(
+    to bottom,
+    hsl(308, 87%, 28%),
+    hsla(12, 40%, 70%, 0.5) 50%,
+    hsl(310, 93%, 23%)
+  );
+}
+
+button {
+  all: unset;
+  background-color: var(--black);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--red);
+  box-shadow: 0 0 4px var(--red-shadow);
+  cursor: pointer;
+  perspective: 1000px;
+  position: relative;
+  overflow: hidden;
+}
+
+.blurry {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.blurry::before {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  transform: translate3d(0px, 0px, -1px);
+  background: var(--red-shadow);
+  filter: blur(6px);
+}
+
+/* Efeito Glitch */
+
+@keyframes glitch {
+    50% {
+      transform: skew(180deg);
+    }
+  }
+  [anim="glitch"]:not(.toggled) {
+    animation: glitch var(--ease-elastic-in-1) 600ms infinite;
+  }
+
